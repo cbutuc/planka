@@ -1,0 +1,13 @@
+# Node
+node_modules/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# SQLTools
+*.session.sql
