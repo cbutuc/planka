@@ -90,6 +90,71 @@ app.get("/api/projects/:id", async (req, res) => {
   }
 });
 
+app.get("/api/projects/:projectId/tickets", async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const result = await query("SELECT * FROM tickets WHERE project_id =$1", [
+      projectId,
+    ]);
+
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/projects/:projectId/tickets", async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const { title, description, status } = req.body;
+    const result = await query(
+      "INSERT INTO tickets (title, description, status, project_id) VALUES ($1, $2, $3, $4) RETURNING *",
+      [title, description, status, projectId],
+    );
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.patch("/api/tickets/:id/status", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const result = await query(
+      "UPDATE tickets SET status = $1 WHERE id = $2 RETURNING *",
+      [status, id],
+    );
+
+    if (!result.rows[0]) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete("/api/tickets/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await query(
+      "DELETE FROM tickets WHERE id = $1 RETURNING *",
+      [id],
+    );
+
+    if (!result.rows[0]) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+
+    res.json({ message: "Ticket deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(3000, async () => {
   console.log("Server is running on port 3000");
   await initDB();
