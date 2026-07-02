@@ -6,7 +6,7 @@ export type Column = {
 };
 
 export const initialColumns: Column[] = [
-  { id: "todo", title: "To do" },
-  { id: "inProgress", title: "In progress" },
+  { id: "todo", title: "To Do" },
+  { id: "in_progress", title: "In Progress" },
   { id: "done", title: "Done" },
 ];

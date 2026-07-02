@@ -5,21 +5,18 @@ import { arrayMove } from "@dnd-kit/sortable";
 import styles from "./board.module.css";
 
 import { PostColumn } from "../components/post-column/post-column";
-import { initialTasks, type Task } from "../data/tasks";
+import { type Task } from "../data/tasks";
 import { initialColumns } from "../data/columns";
+import { fetchTickets, updateTicketStatus } from "../lib/api";
 
 export function Board() {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const savedTasks = localStorage.getItem("tasks");
-
-    return savedTasks ? JSON.parse(savedTasks) : initialTasks;
-  });
-
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [columns, setColumns] = useState(initialColumns);
 
+  // fetch tickets from database on mount
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    fetchTickets(1).then(setTasks);
+  }, []);
 
   function handleDragOver(event: DragOverEvent) {
     const { active, over } = event;
@@ -50,13 +47,16 @@ export function Board() {
 
     // 2) i'm dropping a task over a column
     if (isActiveTask && isOverColumn) {
+      const newStatus = overId as Task["status"];
+
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((task) => task.id === activeId);
-
-        tasks[activeIndex].status = overId as Task["status"];
-
+        tasks[activeIndex].status = newStatus;
         return arrayMove(tasks, activeIndex, activeIndex);
       });
+
+      // save to database
+      updateTicketStatus(Number(activeId), newStatus);
     }
   }
 
