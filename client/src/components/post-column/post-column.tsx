@@ -96,10 +96,12 @@ export function PostColumn({
               autoFocus
             />
           ) : (
-            <h3>{title}</h3>
+            <span className={`${styles["title-pill"]} ${styles[status]}`}>
+              <h3>{title}</h3>
+            </span>
           )}
 
-          <div className={`${styles.badge} ${styles[status]}`}>
+          <div className={styles.badge}>
             <span>{filteredTasks.length}</span>
           </div>
         </div>

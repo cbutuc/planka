@@ -1,44 +1,52 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* ---- Surfaces ---- */
-  --color-bg: #0b0f1a;
-  --color-surface: #131826;
-  --color-surface-raised: #1b2233;
-  --color-surface-hover: #212940;
+  /* ---- Surfaces (Trello/Asana-style reference: light neutral gray page,
+     white cards separated by real shadows rather than borders) ---- */
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-hover: #f4f5f7;
 
-  /* ---- Borders ---- */
-  --color-border: #262e42;
-  --color-border-strong: #333d57;
+  /* ---- Borders (subtle - shadows now do most of the separation work) ---- */
+  --color-border: #e4e7ec;
+  --color-border-strong: #c7cdd6;
 
-  /* ---- Text ---- */
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #64748b;
+  /* ---- Text (verified WCAG AA: primary 13.27:1, secondary 5.00:1,
+     tertiary 4.76:1, all vs bg; all clear 4.5:1 vs surface too) ---- */
+  --color-text-primary: #172b4d;
+  --color-text-secondary: #5e6c84;
+  --color-text-tertiary: #63707f;
 
-  /* ---- Accent (primary actions, links, focus) ---- */
-  --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
-  --color-accent-muted: rgba(99, 102, 241, 0.15);
+  /* ---- Accent (primary actions, focus). A violet distinct from the blue
+     used for "todo" status, matching the tag-pill hues in the reference. ---- */
+  --color-accent: #5b4fe0;
+  --color-accent-hover: #4a3dd9;
+  --color-accent-muted: rgba(91, 79, 224, 0.12);
 
-  /* ---- Status (kanban column semantics) ---- */
-  --color-status-todo: #38bdf8;
-  --color-status-todo-bg: rgba(56, 189, 248, 0.12);
+  /* ---- Status (kanban column semantics). Each color works both as pill
+     text (on its own light wash) and as white-on-solid (count badge, if
+     ever used that way) - verified >=5:1 both directions. ---- */
+  --color-status-todo: #1d4ed8;
+  --color-status-todo-bg: rgba(29, 78, 216, 0.1);
 
-  --color-status-progress: #fb923c;
-  --color-status-progress-bg: rgba(251, 146, 60, 0.12);
+  --color-status-progress: #b45309;
+  --color-status-progress-bg: rgba(180, 83, 9, 0.1);
 
-  --color-status-done: #34d399;
-  --color-status-done-bg: rgba(52, 211, 153, 0.12);
+  --color-status-done: #15803d;
+  --color-status-done-bg: rgba(21, 128, 61, 0.1);
 
   /* ---- Feedback ---- */
-  --color-danger: #f87171;
-  --color-danger-bg: rgba(248, 113, 113, 0.12);
-  --color-warning: #fbbf24;
+  --color-danger: #dc2626;
+  --color-danger-bg: rgba(220, 38, 38, 0.1);
+  --color-warning: #b45309;
   --color-success: var(--color-status-done);
 
+  /* ---- Text/icon color for content sitting directly on a solid fill. ---- */
+  --color-on-solid: #ffffff;
+
   /* ---- Typography ---- */
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -61,22 +69,25 @@
   --space-6: 2rem;
   --space-8: 3rem;
 
-  /* ---- Radius ---- */
+  /* ---- Radius (generous again, matching the reference's rounded-card
+     look - reversing the 0-4px Flat Design ceiling from the previous pass) ---- */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-full: 999px;
 
-  /* ---- Shadows (dark-mode tuned: darker + softer glow, not the light-mode drop shadow) ---- */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+  /* ---- Shadows (back, after two passes without them - the reference is
+     built on real elevation. Tinted toward text-primary's navy hue rather
+     than pure black, so it reads soft, not smudgy.) ---- */
+  --shadow-sm: 0 1px 2px rgba(23, 43, 77, 0.08);
+  --shadow-md: 0 4px 12px rgba(23, 43, 77, 0.1);
+  --shadow-lg: 0 10px 24px rgba(23, 43, 77, 0.14);
   --shadow-focus: 0 0 0 3px var(--color-accent-muted);
 
   /* ---- Motion ---- */
   --transition-fast: 150ms ease;
-  --transition-base: 200ms ease;
-  --transition-slow: 300ms ease;
+  --transition-base: 180ms ease;
+  --transition-slow: 250ms ease;
 
   /* ---- Z-index scale ---- */
   --z-dropdown: 10;

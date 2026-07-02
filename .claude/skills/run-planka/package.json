@@ -1,0 +1,10 @@
+{
+  "name": "run-planka-driver",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Playwright driver for the /run-planka skill. Not part of the app itself.",
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.61.1"
+  }
+}

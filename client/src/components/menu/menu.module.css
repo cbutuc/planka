@@ -37,7 +37,7 @@
   box-shadow: var(--shadow-lg);
   padding: 0.5rem;
   font-size: var(--text-sm);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
 
   margin-top: 0px;
 
@@ -45,6 +45,11 @@
   right: 0;
   z-index: var(--z-dropdown);
   top: 100%;
+
+  /* Scales from its trigger corner (top-right, where the "..." button
+     sits), not the default center - a popover anchored to a point should
+     visually originate from that point. */
+  transform-origin: top right;
 
   opacity: 0;
   transform: translateY(-6px) scale(0.96);
