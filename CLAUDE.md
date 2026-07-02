@@ -69,3 +69,7 @@ Connection details:
 - SQL uses parameterized queries $1 $2, never string interpolation
 - Always wrap DB calls in try/catch
 - Return result.rows for lists, result.rows[0] for single items
+
+## Design Context
+
+Frontend design decisions are governed by `PRODUCT.md` (register, users, brand personality, anti-references) and `DESIGN.md` (color/type/component tokens, north star "The Late Shift"). Read both before making UI changes — `DESIGN.md` wins on visual decisions, `PRODUCT.md` wins on strategic/voice decisions. Managed by the `impeccable` skill.

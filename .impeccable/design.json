@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-02T00:00:00.000Z",
+  "title": "Design System: Planka",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Late-Shift Indigo",
+        "canonical": "#6366f1",
+        "tonalRamp": [
+          "#1e1b4b",
+          "#312e81",
+          "#3730a3",
+          "#4338ca",
+          "#4f46e5",
+          "#6366f1",
+          "#818cf8",
+          "#a5b4fc"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Near-Black Navy",
+        "canonical": "#0b0f1a",
+        "tonalRamp": [
+          "#05070c",
+          "#0b0f1a",
+          "#131826",
+          "#1b2233",
+          "#212940",
+          "#262e42",
+          "#333d57",
+          "#4a5578"
+        ]
+      },
+      "status-todo": {
+        "role": "secondary",
+        "displayName": "Sky Todo",
+        "canonical": "#38bdf8",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#075985", "#0369a1", "#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd"]
+      },
+      "status-progress": {
+        "role": "secondary",
+        "displayName": "Amber Progress",
+        "canonical": "#fb923c",
+        "tonalRamp": ["#431407", "#7c2d12", "#9a3412", "#c2410c", "#ea580c", "#fb923c", "#fdba74", "#fed7aa"]
+      },
+      "status-done": {
+        "role": "secondary",
+        "displayName": "Mint Done",
+        "canonical": "#34d399",
+        "tonalRamp": ["#022c22", "#064e3b", "#065f46", "#047857", "#059669", "#34d399", "#6ee7b7", "#a7f3d0"]
+      },
+      "danger": {
+        "role": "feedback",
+        "displayName": "Coral Danger",
+        "canonical": "#f87171",
+        "tonalRamp": ["#450a0a", "#7f1d1d", "#991b1b", "#b91c1c", "#dc2626", "#f87171", "#fca5a5", "#fecaca"]
+      }
+    },
+    "typographyMeta": {
+      "title": { "displayName": "Title", "purpose": "Column headers only." },
+      "body": { "displayName": "Body", "purpose": "Default running text, card descriptions." },
+      "label": { "displayName": "Label", "purpose": "Metadata: dates, badges, menu items." }
+    },
+    "shadows": [
+      { "name": "shadow-sm", "value": "0 1px 2px rgba(0,0,0,0.4)", "purpose": "Card resting state." },
+      { "name": "shadow-md", "value": "0 4px 16px rgba(0,0,0,0.45)", "purpose": "Card hover elevation." },
+      { "name": "shadow-lg", "value": "0 16px 40px rgba(0,0,0,0.55)", "purpose": "Dropdown menu / popover surfaces." },
+      { "name": "shadow-focus", "value": "0 0 0 3px var(--color-accent-muted)", "purpose": "Focus ring, replaces default outline." }
+    ],
+    "motion": [
+      { "name": "transition-fast", "value": "150ms ease", "purpose": "Hover states, menu open/close, icon rotation." },
+      { "name": "transition-base", "value": "200ms ease", "purpose": "Input focus, border/background shifts." },
+      { "name": "transition-slow", "value": "300ms ease", "purpose": "Column delete fade-and-scale-out." }
+    ],
+    "breakpoints": [
+      { "name": "stack", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Column Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A single task card inside a kanban column.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Fix login redirect</h3><p class=\"ds-card-desc\">Users land on 404 after OAuth callback</p><div class=\"ds-card-date\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48Zm136,160H48V96H208V208Z\"></path></svg><span>Jul 2</span></div></div>",
+      "css": ".ds-card { background-color: #1b2233; border: 1px solid #262e42; display: flex; flex-direction: column; gap: 16px; padding: 16px; border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.4); cursor: pointer; transition: border-color 150ms ease, box-shadow 150ms ease; font-family: Inter, system-ui, sans-serif; } .ds-card:hover { border-color: #333d57; box-shadow: 0 4px 16px rgba(0,0,0,0.45); } .ds-card-title { font-size: 17px; font-weight: 600; color: #f1f5f9; line-height: 1; } .ds-card-desc { font-size: 13px; font-weight: 500; color: #94a3b8; } .ds-card-date { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; color: #64748b; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "menu-item",
+      "description": "Column title-count badge, colored by status (todo/progress/done).",
+      "html": "<span class=\"ds-badge ds-badge-todo\">3</span>",
+      "css": ".ds-badge { display: grid; place-items: center; font-size: 8px; font-weight: 700; border-radius: 999px; width: 15px; height: 15px; color: #0b0f1a; font-family: Inter, sans-serif; } .ds-badge-todo { background-color: #38bdf8; } .ds-badge-progress { background-color: #fb923c; } .ds-badge-done { background-color: #34d399; }"
+    },
+    {
+      "name": "Dropdown Menu",
+      "kind": "custom",
+      "refersTo": "menu-item",
+      "description": "The column '...' action menu, with a destructive item variant.",
+      "html": "<div class=\"ds-menu\"><button class=\"ds-menu-item\">Edit</button><button class=\"ds-menu-item ds-menu-item-danger\">Delete</button></div>",
+      "css": ".ds-menu { display: flex; flex-direction: column; background-color: #1b2233; border: 1px solid #262e42; border-radius: 10px; box-shadow: 0 16px 40px rgba(0,0,0,0.55); padding: 8px; font-size: 13px; font-weight: 600; font-family: Inter, sans-serif; width: 160px; } .ds-menu-item { display: flex; align-items: center; padding: 8px 12px; border-radius: 6px; color: #f1f5f9; cursor: pointer; background: none; border: none; text-align: left; transition: background-color 150ms ease, color 150ms ease; } .ds-menu-item:hover { background-color: #212940; } .ds-menu-item-danger:hover { color: #f87171; background-color: rgba(248,113,113,0.12); }"
+    },
+    {
+      "name": "New Task Button",
+      "kind": "button",
+      "refersTo": "menu-item",
+      "description": "Full-width ghost button at the bottom of each column.",
+      "html": "<button class=\"ds-new-task\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z\"></path></svg><span>New task</span></button>",
+      "css": ".ds-new-task { display: flex; width: 100%; gap: 3px; justify-content: center; align-items: center; background: none; border: none; font-size: 15px; font-weight: 500; color: #94a3b8; padding-top: 16px; cursor: pointer; transition: color 150ms ease; font-family: Inter, sans-serif; } .ds-new-task:hover { color: #f1f5f9; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Late Shift",
+    "overview": "Planka is the workspace open on your screen after everything else has gone quiet — a dim room, one task lamp, nothing competing for attention. The palette is dark by default not because dark mode is the safe AI choice, but because that's the honest condition of a late-night, solo, low-pressure tool: you're not presenting to anyone, you're just moving cards. That said, this is a documented snapshot of the current system, and it carries an open tension worth naming plainly: the accent (#6366f1 indigo) sitting on a near-black navy background (#0b0f1a) is close to the exact 'generic AI-SaaS dark mode' pattern PRODUCT.md names as an anti-reference. It isn't wrong today, but it's a known rough edge, not a locked-in choice — a future /impeccable colorize pass should push the accent toward something more deliberately chosen rather than the indigo-on-navy default. What keeps the system calm rather than corporate: soft layered surfaces instead of hard borders, gentle motion on every state change, and status color used sparingly — as a wash behind text, not a loud fill.",
+    "keyCharacteristics": [
+      "Dark-only, layered-surface depth (bg → surface → surface-raised → surface-hover)",
+      "One accent color, used narrowly (focus rings, primary actions)",
+      "Status color expressed as tinted backgrounds, not solid fills",
+      "Soft, fast transitions (150-300ms) on every interactive state",
+      "Generous internal padding; nothing feels cramped or table-dense"
+    ],
+    "rules": [
+      { "name": "The Wash-Not-Fill Rule", "body": "Status and feedback colors appear as low-opacity background tints (12-15% alpha) behind their saturated counterpart, never as large solid fills.", "section": "colors" },
+      { "name": "The One-Family Rule", "body": "Every text role uses Inter. Hierarchy comes from size and weight, never a second typeface.", "section": "typography" },
+      { "name": "The Tone-Before-Shadow Rule", "body": "Reach for the next surface tone before reaching for a heavier shadow. Shadows confirm depth that tone already implies.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use the wash-not-fill pattern for every status/feedback color: a small saturated badge, a large low-opacity background.",
+      "Do animate every state change (hover, open/close, delete) — a bare 150-300ms ease transition is the floor, not optional.",
+      "Do let inputs and interactive elements inside a column borrow that column's status color for focus rings, rather than defaulting to the generic accent.",
+      "Do keep one typeface (Inter) and build hierarchy from weight/size only.",
+      "Do treat the three-step surface tone ladder as the primary depth tool, before adding a shadow."
+    ],
+    "donts": [
+      "Don't let this indigo-on-navy pairing calcify as 'the brand' — PRODUCT.md names it directly as the generic AI-SaaS dark-mode pattern to move away from.",
+      "Don't add a second accent color without a clear semantic reason.",
+      "Don't use border-left/border-right as a colored stripe accent anywhere.",
+      "Don't make destructive actions instant — the 300ms fade-and-scale-out is load-bearing for the calm, not corporate feel.",
+      "Don't introduce a dense, form-heavy layout in future screens — the padding and spacing scale here should carry forward, not compress toward enterprise-table density."
+    ]
+  }
+}
