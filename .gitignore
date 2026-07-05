@@ -15,3 +15,5 @@ Thumbs.db
 
 # SQLTools
 *.session.sql
+
+.claude/settings.local.json
