@@ -12,12 +12,16 @@ import { DroppableArea } from "../droppable-area";
 import { SortableItem } from "../sortable-item";
 import type { Task } from "../../data/tasks";
 import { Menu } from "../menu/menu";
+import { CreateTaskForm } from "../create-task-form/create-task-form";
 
 type PostColumnProps = {
   children: ReactNode;
   status: Task["status"];
   tasks: Task[];
   deleteColumn: (status: string) => void;
+  showForm: boolean;
+  onOpenForm: () => void;
+  onCloseForm: () => void;
   // editColumnTitle: (id: string) => void;
 };
 
@@ -26,6 +30,9 @@ export function PostColumn({
   status,
   tasks,
   deleteColumn,
+  showForm,
+  onOpenForm,
+  onCloseForm,
   // editColumnTitle,
 }: PostColumnProps) {
   console.log("status", status);
@@ -34,7 +41,6 @@ export function PostColumn({
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showForm, setShowForm] = useState(false);
 
   const menuRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -77,6 +83,8 @@ export function PostColumn({
     setIsMenuOpen(false);
     // editColumnTitle(status);
   };
+
+  const handleSave = () => {};
 
   return (
     <DroppableArea
@@ -132,20 +140,28 @@ export function PostColumn({
               <PostCard
                 title={task.title}
                 description={task.description}
-                date={task.date}
+                createdAt={task.created_at}
               />
             </SortableItem>
           ))}
         </SortableContext>
       </ul>
 
-      <button
-        onClick={() => setShowForm((prev) => !prev)}
-        className={styles["new-task-button"]}
-      >
-        <Plus className={`${styles.icon} ${showForm ? styles.open : ""}`} />
-        <p>New task</p>
-      </button>
+      {showForm ? (
+        <CreateTaskForm
+          status={status}
+          onCancel={onCloseForm}
+          onSave={handleSave}
+        />
+      ) : (
+        <button
+          onClick={onOpenForm}
+          className={styles["new-task-button"]}
+        >
+          <Plus className={styles.icon} />
+          <p>New task</p>
+        </button>
+      )}
     </DroppableArea>
   );
 }

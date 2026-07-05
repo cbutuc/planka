@@ -5,12 +5,13 @@ export const fetchTickets = async (projectId: number) => {
 }
 
 // create a new ticket
-export const createTicket = async (projectId: number, data: {
+export const createTicket = async (data: {
   title: string
   description: string
   status: string
+  project_id: number
 }) => {
-  const res = await fetch(`/api/projects/${projectId}/tickets`, {
+  const res = await fetch(`/api/tickets`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)

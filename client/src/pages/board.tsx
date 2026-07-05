@@ -12,6 +12,7 @@ import { fetchTickets, updateTicketStatus } from "../lib/api";
 export function Board() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [columns, setColumns] = useState(initialColumns);
+  const [activeForm, setActiveForm] = useState<string | null>(null);
 
   // fetch tickets from database on mount
   useEffect(() => {
@@ -85,6 +86,9 @@ export function Board() {
             status={column.id}
             tasks={tasks}
             deleteColumn={deleteColumn}
+            showForm={activeForm === column.id}
+            onOpenForm={() => setActiveForm(column.id)}
+            onCloseForm={() => setActiveForm(null)}
             // editColumnTitle={editColumnTitle}
           >
             {column.title}

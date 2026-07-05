@@ -1,0 +1,112 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-block-end: var(--space-2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .form {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  @starting-style {
+    .form {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+}
+
+.input,
+.textarea {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+.input.todo:focus,
+.textarea.todo:focus {
+  border-color: var(--color-status-todo);
+  box-shadow: 0 0 0 3px var(--color-status-todo-bg);
+}
+
+.input.in_progress:focus,
+.textarea.in_progress:focus {
+  border-color: var(--color-status-progress);
+  box-shadow: 0 0 0 3px var(--color-status-progress-bg);
+}
+
+.input.done:focus,
+.textarea.done:focus {
+  border-color: var(--color-status-done);
+  box-shadow: 0 0 0 3px var(--color-status-done-bg);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.cancelButton {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.cancelButton:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+}
+
+.saveButton {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-solid);
+  background-color: var(--color-accent);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.saveButton:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.saveButton:active,
+.cancelButton:active {
+  transform: scale(0.98);
+}

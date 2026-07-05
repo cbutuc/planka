@@ -4,10 +4,12 @@ import { CalendarBlank } from "phosphor-react";
 type PostCardProps = {
   title: string;
   description: string;
-  date: string;
+  createdAt: string;
 };
 
-export function PostCard({ title, description, date }: PostCardProps) {
+export function PostCard({ title, description, createdAt }: PostCardProps) {
+  const date = new Date(createdAt).toLocaleDateString();
+
   return (
     <div className={styles.card}>
       <h3>{title}</h3>
