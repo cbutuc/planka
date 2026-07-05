@@ -13,3 +13,7 @@
 - tickets → id, title, description, status, project_id, assignee_id, reporter_id, created_at
 - boards → id, title, description, project_id, created_at
 - board_tickets → board_id, ticket_id (linking table)
+
+## ERD
+
+See docs/erd.png
