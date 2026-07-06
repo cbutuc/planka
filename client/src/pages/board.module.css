@@ -1,6 +1,6 @@
 .columnWrapper {
   display: flex;
-  gap: 2rem;
+  gap: var(--space-6);
   align-items: flex-start;
 
   @media screen and (max-width: 700px) {

@@ -3,7 +3,7 @@
   font-size: var(--text-md);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  padding: 0.5rem 0.25rem;
+  padding: var(--space-2) var(--space-1);
   border-radius: var(--radius-lg);
 
   transition:
@@ -20,14 +20,14 @@
 .column-header {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding-inline-start: 0.25rem;
+  gap: var(--space-4);
+  padding-inline-start: var(--space-1);
 }
 
 .input {
   font-size: var(--text-lg);
   font-weight: var(--font-weight-semibold);
-  padding: 4px 8px;
+  padding: var(--space-1) var(--space-2);
   background-color: var(--color-surface-raised);
   color: var(--color-text-primary);
   border: 1px solid var(--color-border-strong);
@@ -59,13 +59,13 @@
 .title-count {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .title-pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
 }
 
@@ -126,20 +126,20 @@
 .cards-container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-block: 1rem;
+  gap: var(--space-2);
+  margin-block: var(--space-4);
 }
 
 .new-task-button {
   display: flex;
   width: 100%;
-  gap: 0.2rem;
+  gap: var(--space-1);
   justify-content: center;
 
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
-  padding-top: 1rem;
+  padding-top: var(--space-4);
   transition: color var(--transition-fast);
 }
 
