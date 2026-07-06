@@ -38,9 +38,7 @@ export function PostColumn({
   onTaskCreated,
   // editColumnTitle,
 }: PostColumnProps) {
-  console.log("status", status);
   const [title, setTitle] = useState(children);
-  console.log("title", title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);

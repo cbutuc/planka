@@ -8,6 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route index element={<Board />} />
         <Route path="board" element={<Board />} />
         {/* <Route path="task/:id" element={<TaskDetails />} />
         <Route path="*" element={<PageNotFound />} /> */}
