@@ -61,6 +61,10 @@ export function Board() {
     }
   }
 
+  function handleTaskCreated(task: Task) {
+    setTasks((prev) => [...prev, task]);
+  }
+
   function deleteColumn(columnId: string) {
     setColumns((prev) => prev.filter((col) => col.id !== columnId));
     setTasks((prev) => prev.filter((task) => task.status !== columnId));
@@ -89,6 +93,7 @@ export function Board() {
             showForm={activeForm === column.id}
             onOpenForm={() => setActiveForm(column.id)}
             onCloseForm={() => setActiveForm(null)}
+            onTaskCreated={handleTaskCreated}
             // editColumnTitle={editColumnTitle}
           >
             {column.title}

@@ -13,6 +13,7 @@ import { SortableItem } from "../sortable-item";
 import type { Task } from "../../data/tasks";
 import { Menu } from "../menu/menu";
 import { CreateTaskForm } from "../create-task-form/create-task-form";
+import { createTicket } from "../../lib/api";
 
 type PostColumnProps = {
   children: ReactNode;
@@ -22,6 +23,7 @@ type PostColumnProps = {
   showForm: boolean;
   onOpenForm: () => void;
   onCloseForm: () => void;
+  onTaskCreated: (task: Task) => void;
   // editColumnTitle: (id: string) => void;
 };
 
@@ -33,6 +35,7 @@ export function PostColumn({
   showForm,
   onOpenForm,
   onCloseForm,
+  onTaskCreated,
   // editColumnTitle,
 }: PostColumnProps) {
   console.log("status", status);
@@ -84,7 +87,16 @@ export function PostColumn({
     // editColumnTitle(status);
   };
 
-  const handleSave = () => {};
+  const handleSave = async (data: { title: string; description: string }) => {
+    const newTask = await createTicket({
+      title: data.title,
+      description: data.description,
+      status,
+      project_id: 1,
+    });
+    onTaskCreated(newTask);
+    onCloseForm();
+  };
 
   return (
     <DroppableArea
@@ -154,10 +166,7 @@ export function PostColumn({
           onSave={handleSave}
         />
       ) : (
-        <button
-          onClick={onOpenForm}
-          className={styles["new-task-button"]}
-        >
+        <button onClick={onOpenForm} className={styles["new-task-button"]}>
           <Plus className={styles.icon} />
           <p>New task</p>
         </button>
