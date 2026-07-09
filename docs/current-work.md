@@ -2,7 +2,7 @@
 
 ## Status
 
-Item 1 of PLAN.md — create ticket form. **Complete.**
+Item 1 of PLAN.md — create ticket form. **Complete and committed** (`c43324e`, plus follow-up refactors `e89eba6`, `b67da83`).
 
 - `client/src/lib/api.ts` — `createTicket()` fixed to POST `/api/tickets` with `project_id` in the body (was 404ing against a route that never existed).
 - `client/src/components/post-card/post-card.tsx` — date bug fixed; takes `createdAt` and derives the display string with `new Date(createdAt).toLocaleDateString()`.
@@ -12,7 +12,9 @@ Item 1 of PLAN.md — create ticket form. **Complete.**
 
 End-to-end flow (new task button → fill in → Save → card appears → reload → persisted) manually verified working.
 
-Not yet committed/pushed — changes are in the working tree only.
+### Bug fix (not in PLAN.md): drag-onto-card didn't persist
+
+Dropping a task onto empty column space (`isOverColumn` branch in `board.tsx`'s `handleDragOver`) called `updateTicketStatus`, but dropping onto an *existing card* in another column (`isOverTask` branch) only updated local state — the move looked right on screen but reverted on reload. Fixed by deriving the target status from the task being dropped onto (`overTask.status`) and calling `updateTicketStatus(Number(activeId), newStatus)` in that branch too. Verified live: dragging a card onto another card in a different column now fires `PATCH /api/tickets/:id/status` with the correct status. Not yet committed.
 
 ## Next up
 

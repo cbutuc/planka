@@ -36,7 +36,14 @@ export function Board() {
 
     // 1) i'm dropping a task over another task
     if (isActiveTask && isOverTask) {
+      const overTask = tasks.find((task) => task.id === overId);
+      if (!overTask) return;
+      const newStatus = overTask.status;
+
       setTasks((tasks) => moveTaskOverTask(tasks, activeId, overId));
+
+      // save to database
+      updateTicketStatus(Number(activeId), newStatus);
     }
 
     // 2) i'm dropping a task over a column
