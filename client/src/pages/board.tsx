@@ -9,7 +9,11 @@ import { initialColumns } from "../data/columns";
 import { fetchTickets, updateTicketStatus } from "../lib/api";
 import { moveTaskOverTask, moveTaskToColumn } from "../utils/tasks";
 
-export function Board() {
+type BoardProps = {
+  title?: string;
+};
+
+export function Board({ title }: BoardProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [columns, setColumns] = useState(initialColumns);
   const [activeForm, setActiveForm] = useState<string | null>(null);
@@ -68,6 +72,7 @@ export function Board() {
 
   return (
     <DndContext onDragOver={handleDragOver}>
+      {title ? <h1 className={styles.title}>{title}</h1> : null}
       <div className={styles.columnWrapper}>
         {columns.map((column) => (
           <PostColumn

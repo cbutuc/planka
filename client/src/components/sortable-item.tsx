@@ -4,7 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 type SortableItemProps = {
   id: UniqueIdentifier;
-  children: React.ReactNode;
+  children: (isDragging: boolean) => React.ReactNode;
 };
 
 export function SortableItem({ id, children }: SortableItemProps) {
@@ -31,7 +31,7 @@ export function SortableItem({ id, children }: SortableItemProps) {
 
   return (
     <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {children}
+      {children(isDragging)}
     </li>
   );
 }

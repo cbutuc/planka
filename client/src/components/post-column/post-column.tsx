@@ -147,11 +147,14 @@ export function PostColumn({
         >
           {filteredTasks.map((task) => (
             <SortableItem key={task.id} id={task.id}>
-              <PostCard
-                title={task.title}
-                description={task.description}
-                createdAt={task.created_at}
-              />
+              {(isDragging) => (
+                <PostCard
+                  title={task.title}
+                  description={task.description}
+                  createdAt={task.created_at}
+                  isDragging={isDragging}
+                />
+              )}
             </SortableItem>
           ))}
         </SortableContext>

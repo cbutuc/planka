@@ -1,0 +1,12 @@
+/* Self-hosted Plus Jakarta Sans (variable font, latin subset, weights 400-700 —
+   matches --font-weight-regular through --font-weight-bold in tokens.css).
+   Downloaded from Google Fonts' own CDN file rather than linked live, so there's
+   no render-blocking cross-origin request and no dependency on fonts.googleapis.com
+   staying reachable. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/PlusJakartaSans-Variable.woff2") format("woff2");
+}

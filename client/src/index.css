@@ -1,5 +1,5 @@
 @import "./styles/tokens.css";
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+@import "./styles/fonts.css";
 
 *,
 *::before,
@@ -17,7 +17,7 @@
 body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  margin: 4rem;
+  margin: 0;
   line-height: 1.6;
   background-color: var(--color-bg);
   color: var(--color-text-primary);

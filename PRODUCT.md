@@ -16,14 +16,17 @@ Planka is a Jira-like Kanban board: projects contain tickets, tickets move acros
 
 **Reset 2026-07-02 (second reset the same day).** The board has now had five visual eras in one day: indigo-dark colorize → brass-gold-dark → structural Linear-elegance → `ui-ux-pro-max` flat light (mint/orange, no shadows) → **the current one**, matching two reference screenshots the user provided directly (Trello/Asana-style boards: white cards with real shadows, generous rounded corners, colored status pills, a light neutral-gray canvas). Each reset is a clean break, not a reconciliation with what came before — treat only the current system (see DESIGN.md) as standing; earlier eras are history.
 
-The board now reads as a **familiar, polished project-management tool**: light neutral-gray page, white cards that lift with real shadow, colored pill-shaped status labels on each column, a violet accent distinct from the blue/orange/green status hues. Scope was deliberately kept to a **visual restyle of real data only** — the reference screenshots show tag pills, avatar stacks, comment/attachment counts, priority badges, and a dark sidebar, none of which exist in this app's schema or routes. The user explicitly chose not to fabricate placeholder data or build a sidebar shell; only title/description/date/status (what the app actually has) are styled.
+The board now reads as a **familiar, polished project-management tool**: light neutral-gray page, white cards that lift with real shadow, colored pill-shaped status labels on each column, a violet accent distinct from the blue/orange/green status hues. Scope was deliberately kept to a **visual restyle of real data only** — the reference screenshots show tag pills, avatar stacks, comment/attachment counts, priority badges, and a dark sidebar, none of which exist in this app's schema or routes. The user explicitly chose not to fabricate placeholder data; only title/description/date/status (what the app actually has) are styled. **Update 2026-07-09:** a collapsible sidebar shell (logo, "All Boards" placeholder, avatar placeholder) is now in scope as UI-only work — see Scope update note below.
+
+## Scope update (2026-07-09)
+
+The sidebar anti-reference below is **partially reversed**: the user asked for a collapsible sidebar shell (logo/title, "All Boards" section, user avatar). It's being built as **UI-only with placeholder data** — no real multi-board/multi-project data model or auth exists yet, so "All Boards" and the avatar are placeholders, not wired to real routes or a real user. Treat the underlying single-board data model as unchanged until a real API backs these sections; the sidebar shell itself is now in scope.
 
 ## Anti-references
 
 Earlier anti-references (indigo-on-navy dark mode, the flat-design shadow ban) no longer apply — don't re-litigate prior resets' reasoning against the current system. Going forward from this reset:
 
-- **Fabricated data.** Don't add tag pills, avatar images, comment/attachment counts, priority badges, or progress bars unless they're backed by real schema/API changes — the reference screenshots have all of these, but this app's `tickets` table doesn't, and the user explicitly chose real-data-only over mocking them.
-- **A sidebar/workspace shell.** The reference screenshots show one; the user explicitly declined it — this app is a single board page, not a multi-project workspace.
+- **Fabricated data.** Don't add tag pills, avatar images, comment/attachment counts, priority badges, or progress bars unless they're backed by real schema/API changes — the reference screenshots have all of these, but this app's `tickets` table doesn't, and the user explicitly chose real-data-only over mocking them. (The sidebar's "All Boards" and avatar are a scoped exception — see Scope update above — but stay placeholder, not fabricated *fake-looking-real* data.)
 - **Losing shadows again.** This is a shadow-based design now (real elevation, tinted navy not pure black) — don't reintroduce the flat-design shadow ban from the previous era.
 
 ## Design Principles

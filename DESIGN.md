@@ -136,14 +136,14 @@ A light neutral-gray canvas, white elevated cards, dark navy-ink text, one viole
 
 ## 3. Typography
 
-**Body Font:** Plus Jakarta Sans (unchanged from the previous era — the reference screenshots don't show a strongly distinctive typeface, so there was no reason to churn this again).
+**Body Font:** Plus Jakarta Sans (unchanged from the previous era — the reference screenshots don't show a strongly distinctive typeface, so there was no reason to churn this again). Self-hosted as of 2026-07-09 (`client/src/assets/fonts/PlusJakartaSans-Variable.woff2`, a variable font covering weights 400-700, latin subset) instead of linked live from `fonts.googleapis.com` — removes a render-blocking cross-origin request and a runtime dependency on Google's CDN staying reachable.
 
 ### Hierarchy
 
-- **Title** (700, 1.25rem, line-height 1): Card titles are bold — matches the reference's heavy card-title weight.
+- **Title** (600, `--text-md`/1.0625rem, line-height 1): Card titles — semibold, one step up from Body on the type scale. (Corrected 2026-07-09: this section previously documented 700/1.25rem, which never matched the actual CSS — `post-card.module.css`'s `.card h3` has always been `--text-md`/600, matching what Section 5's Cards entry already said. Section 3 was stale, not the code.)
 - **Pill Label** (700, `--text-xs`, uppercase, letter-spacing 0.03em): Column status pill text — small, bold, uppercase, tracked out, matching the reference's chip labels.
-- **Body** (400, 0.9375rem, line-height 1.6): Default running text, card descriptions.
-- **Label** (500, 0.8125rem, line-height 1): Dates, menu items.
+- **Body** (500, `--text-base`/0.9375rem, line-height 1.6): Default running text, card descriptions. Card description was bumped from `--text-sm` to `--text-base` on 2026-07-09 so the Title:Body ratio (1.0625/0.9375 = 1.13) sits inside the 1.125-1.2 step ratio the product register calls for, instead of the previous, looser 1.31.
+- **Label** (500, `--text-sm`/0.8125rem, line-height 1): Dates, menu items — unchanged, stays smaller than Body so metadata reads as secondary.
 
 ### Named Rules
 
@@ -201,6 +201,16 @@ Real elevation, reintroduced after the previous era's flat-design shadow ban. Ca
 - **Transform origin:** `top right` — scales from its trigger's corner, not the CSS default of center.
 - **Items:** 6px radius, hover gets `surface-hover` background, presses to `scale(0.97)`; the destructive item ("Delete") hovers into `danger` text on `danger-bg` wash.
 
+### Sidebar (added 2026-07-09)
+
+**Scope:** UI shell only — logo/title, "All Boards" placeholder section, user avatar placeholder. No real multi-board data or auth yet (see PRODUCT.md Scope update). Collapsible: closed shows icons only, open shows icons + labels.
+
+- **Palette choice:** Light surface (`--color-surface` background, `--color-border` divider on the trailing edge), *not* the dark sidebar shown in the original reference screenshots — this keeps the sidebar inside the existing token system instead of introducing a parallel dark palette. This is a deliberate deviation from the reference; revisit if the user wants the dark treatment.
+- **Widths:** Component-local (not global tokens, consistent with column widths) — collapsed ~64px (icon rail), expanded ~240px.
+- **Motion:** Width transitions on `var(--transition-slow)` (250ms ease), matching the column delete fade/scale as the project's standard for structural (not hover) motion. Labels fade via opacity, not just clipped, so text doesn't hard-cut mid-transition.
+- **Elevation:** A right-edge `--color-border` hairline separates it from the board canvas — no shadow, since it's a permanent structural panel, not a floating surface (shadows are reserved for cards/menus per the Shadow-Tint Rule).
+- **Icon-only (closed) state:** Icons centered in the rail; labels `display: none`/opacity 0, not just visually hidden, so they don't intercept layout or focus order oddly.
+
 ## 6. Do's and Don'ts
 
 ### Do:
@@ -213,7 +223,7 @@ Real elevation, reintroduced after the previous era's flat-design shadow ban. Ca
 
 ### Don't:
 
-- **Don't** fabricate placeholder tags, avatar images, comment/attachment counts, or a sidebar shell to look more like the reference — the user explicitly chose real-data-only scope. Flag the gap instead of mocking it.
+- **Don't** fabricate placeholder tags, avatar images, or comment/attachment counts to look more like the reference — the user explicitly chose real-data-only scope for card content. Flag the gap instead of mocking it. (The sidebar shell is a scoped exception as of 2026-07-09 — see the Sidebar component section — but its "All Boards" and avatar stay clearly placeholder, not real-looking fake data.)
 - **Don't** reintroduce the previous era's shadow ban or 0-4px radius ceiling — those belonged to the `ui-ux-pro-max` flat-design system, now superseded.
 - **Don't** assume a status modifier class works just because it's spelled consistently elsewhere in the CSS — verify it actually matches the real data value. The `inProgress`/`in_progress` mismatch silently broke status styling for one column across four prior eras before this pass caught it.
 - **Don't** color the task-count badge — it stays neutral so the colored title pill is the only status signal in the header.

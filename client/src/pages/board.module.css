@@ -1,3 +1,10 @@
+.title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+}
+
 .columnWrapper {
   display: flex;
   gap: var(--space-6);
