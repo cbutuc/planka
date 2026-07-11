@@ -16,4 +16,7 @@ Thumbs.db
 # SQLTools
 *.session.sql
 
-.claude/settings.local.json
+# Claude Code workspace (keep CLAUDE.md tracked)
+.claude/
+.impeccable/
+PLAN.md
